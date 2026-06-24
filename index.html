@@ -8,7 +8,7 @@
     <title>MF.DEV | Manandaza François – Full Stack Developer</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700;800&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
     <script>
@@ -27,12 +27,15 @@
                     fontFamily: {
                         sans: ['Inter', 'system-ui', 'sans-serif'],
                         display: ['Space Grotesk', 'Inter', 'sans-serif'],
+                        orbitron: ['Orbitron', 'monospace'],
                     },
                     animation: {
                         float: 'float 6s ease-in-out infinite',
                         glow: 'glow 2s ease-in-out infinite',
                         pulse: 'pulse 3s ease-in-out infinite',
                         'spin-slow': 'spin 20s linear infinite',
+                        'text-shimmer': 'textShimmer 3s ease-in-out infinite',
+                        'letter-bounce': 'letterBounce 2s ease-in-out infinite',
                     },
                     keyframes: {
                         float: {
@@ -42,6 +45,15 @@
                         glow: {
                             '0%,100%': { textShadow: '0 0 8px #FF5722' },
                             '50%': { textShadow: '0 0 30px #FF5722' },
+                        },
+                        textShimmer: {
+                            '0%,100%': { backgroundPosition: '0% center' },
+                            '50%': { backgroundPosition: '200% center' },
+                        },
+                        letterBounce: {
+                            '0%,100%': { transform: 'translateY(0) rotate(0deg)' },
+                            '25%': { transform: 'translateY(-8px) rotate(2deg)' },
+                            '75%': { transform: 'translateY(-4px) rotate(-1deg)' },
                         },
                     },
                 },
@@ -148,7 +160,71 @@
             color: #FF5722;
         }
 
-        /* ===== HERO BACKGROUND AVEC IMAGE ET PARTICULES ===== */
+        /* ===== NOUVEAU STYLE DE TITRE HERO ===== */
+        .hero-title {
+            font-family: 'Orbitron', 'Space Grotesk', sans-serif;
+            font-weight: 900;
+            letter-spacing: -2px;
+            line-height: 1.1;
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Effet de texte 3D avec ombre portée */
+        .hero-title-3d {
+            background: linear-gradient(135deg, #FF5722 0%, #FFB300 40%, #FF5722 70%, #D84315 100%);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: textShimmer 4s ease-in-out infinite;
+            text-shadow: 
+                0 0 30px rgba(255, 87, 34, 0.3),
+                0 0 60px rgba(255, 87, 34, 0.1);
+            position: relative;
+        }
+
+        /* Contour lumineux autour du texte */
+        .hero-title-glow {
+            position: relative;
+        }
+
+        .hero-title-glow::before {
+            content: 'Mr François';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #FF5722, #FFB300);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: blur(20px);
+            opacity: 0.3;
+            z-index: -1;
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        /* Lettres individuelles animées */
+        .letter-animate {
+            display: inline-block;
+            animation: letterBounce 2s ease-in-out infinite;
+        }
+
+        .letter-animate:nth-child(1) { animation-delay: 0s; }
+        .letter-animate:nth-child(2) { animation-delay: 0.1s; }
+        .letter-animate:nth-child(3) { animation-delay: 0.2s; }
+        .letter-animate:nth-child(4) { animation-delay: 0.3s; }
+        .letter-animate:nth-child(5) { animation-delay: 0.4s; }
+        .letter-animate:nth-child(6) { animation-delay: 0.5s; }
+        .letter-animate:nth-child(7) { animation-delay: 0.6s; }
+        .letter-animate:nth-child(8) { animation-delay: 0.7s; }
+        .letter-animate:nth-child(9) { animation-delay: 0.8s; }
+        .letter-animate:nth-child(10) { animation-delay: 0.9s; }
+        .letter-animate:nth-child(11) { animation-delay: 1.0s; }
+
+        /* ===== HERO BACKGROUND ===== */
         #hero {
             position: relative;
             min-height: 100vh;
@@ -159,7 +235,6 @@
             background: #0a0a0f;
         }
 
-        /* Image de fond technologique */
         .hero-bg-image {
             position: absolute;
             inset: 0;
@@ -167,10 +242,9 @@
             height: 100%;
             object-fit: cover;
             z-index: 0;
-            opacity: 0.7;
+            opacity: 0.6;
         }
 
-        /* Overlay pour la lisibilité du texte */
         .hero-overlay {
             position: absolute;
             inset: 0;
@@ -181,13 +255,11 @@
                 linear-gradient(180deg, rgba(10, 10, 15, 0.6) 0%, rgba(10, 10, 15, 0.85) 100%);
         }
 
-        /* Contenu au-dessus de tout */
         .hero-content {
             position: relative;
             z-index: 2;
         }
 
-        /* ===== PARTICULES ANIMÉES ===== */
         #particles-canvas {
             position: absolute;
             inset: 0;
@@ -197,7 +269,6 @@
             height: 100%;
         }
 
-        /* Effet de grain sur l'image */
         .grain-texture {
             position: absolute;
             inset: 0;
@@ -267,7 +338,6 @@
             display: none;
         }
 
-        /* Effet de vagues en bas de la hero */
         .wave-divider {
             position: absolute;
             bottom: 0;
@@ -277,9 +347,53 @@
             opacity: 0.15;
         }
 
+        /* Style du sous-titre */
+        .hero-subtitle {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .hero-subtitle span {
+            background: linear-gradient(135deg, #FFB300, #FF5722);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Effet de tape sur le texte */
+        .typewriter-text {
+            overflow: hidden;
+            border-right: 3px solid #FF5722;
+            white-space: nowrap;
+            animation: typewriter 3s steps(40) 1s forwards, blinkCursor 0.8s step-end infinite;
+            width: 0;
+            display: inline-block;
+        }
+
+        @keyframes typewriter {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blinkCursor {
+            from, to { border-color: transparent; }
+            50% { border-color: #FF5722; }
+        }
+
         @media (max-width: 768px) {
             .hero-bg-image {
-                opacity: 0.5;
+                opacity: 0.4;
+            }
+            .hero-title {
+                font-size: 2.5rem !important;
+                letter-spacing: -1px;
+            }
+            .typewriter-text {
+                white-space: normal;
+                border-right: none;
+                animation: none;
+                width: 100%;
             }
         }
     </style>
@@ -305,7 +419,6 @@
             </button>
         </div>
 
-        <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden md:hidden glass-dark mt-3 mx-6 p-6 flex flex-col space-y-4 rounded-2xl">
             <a href="#hero" class="text-gray-200 hover:text-[#FF5722] transition font-medium">Accueil</a>
             <a href="#about" class="text-gray-200 hover:text-[#FF5722] transition font-medium">À propos</a>
@@ -316,48 +429,54 @@
         </div>
     </nav>
 
-    <!-- ========== HERO AVEC IMAGE DE FOND + PARTICULES ========== -->
+    <!-- ========== HERO AVEC NOUVEAU DESIGN DE LETTRES ========== -->
     <section id="hero">
-        <!-- Image de fond technologique -->
-        <!-- Option 1: Image de circuits (recommandée) -->
+        <!-- Image de fond -->
         <img src="https://images.unsplash.com/photo-1639322537228-f710d846310a?w=1920&q=80" 
              alt="Technologie numérique" 
              class="hero-bg-image" 
              loading="lazy" />
         
-        <!-- Option alternative: Image de fond sombre avec dégradé (si l'image ne charge pas) -->
-        <!-- <div class="hero-bg-image" style="background: radial-gradient(ellipse at center, #1a1a2e 0%, #0a0a0f 100%);"></div> -->
-
-        <!-- Overlay pour la lisibilité -->
         <div class="hero-overlay"></div>
-
-        <!-- Effet de grain -->
         <div class="grain-texture"></div>
-
-        <!-- Canvas pour les particules animées -->
         <canvas id="particles-canvas"></canvas>
 
-        <!-- Vagues décoratives en bas -->
         <svg class="wave-divider" viewBox="0 0 1440 100" preserveAspectRatio="none">
             <path d="M0,50 C360,100 720,0 1080,50 C1260,75 1380,60 1440,50 L1440,100 L0,100 Z" fill="#FF5722" opacity="0.3"/>
         </svg>
 
-        <!-- Contenu -->
         <div class="hero-content container mx-auto px-6 text-center">
             <div class="inline-block mb-6 px-5 py-1.5 rounded-full bg-white/5 border border-white/10 text-sm backdrop-blur-sm">
                 <i class="fas fa-code text-[#FF5722] mr-2"></i> Full Stack & Créatif
             </div>
-            <h1 class="text-5xl md:text-8xl lg:text-9xl font-display font-extrabold tracking-tighter leading-[1.1]">
-                <span class="bg-gradient-to-r from-[#FF5722] via-[#FFB300] to-[#FF5722] bg-clip-text text-transparent animate-pulse">
-                    Mr François
+
+            <!-- ===== NOUVEAU TITRE AVEC EFFET 3D ET LETTRES ANIMÉES ===== -->
+            <h1 class="text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-display font-extrabold tracking-tighter leading-[1.1] hero-title hero-title-glow">
+                <span class="hero-title-3d">
+                    <!-- Découpage en lettres pour animation individuelle -->
+                    <span class="letter-animate">M</span>
+                    <span class="letter-animate">r</span>
+                    <span class="letter-animate"> </span>
+                    <span class="letter-animate">F</span>
+                    <span class="letter-animate">r</span>
+                    <span class="letter-animate">a</span>
+                    <span class="letter-animate">n</span>
+                    <span class="letter-animate">ç</span>
+                    <span class="letter-animate">o</span>
+                    <span class="letter-animate">i</span>
+                    <span class="letter-animate">s</span>
                 </span>
             </h1>
-            <p class="text-xl md:text-2xl text-gray-200 mt-6 max-w-3xl mx-auto font-medium">
-                Manandaza François — <span class="text-[#FFB300]">Full Stack Developer & Digital Creative</span>
+
+            <!-- Sous-titre avec effet typewriter -->
+            <p class="text-xl md:text-2xl text-gray-200 mt-6 max-w-3xl mx-auto font-medium hero-subtitle">
+                Manandaza François — <span>Full Stack Developer & Digital Creative</span>
             </p>
+
             <p class="text-gray-300 max-w-xl mx-auto mt-4 text-lg backdrop-blur-sm px-4 py-2 rounded-full bg-black/20 inline-block">
-                Applications web modernes, UI/UX impactant, solutions sur mesure.
+                <span class="typewriter-text">Applications web modernes, UI/UX impactant</span>
             </p>
+
             <div class="flex flex-wrap justify-center gap-5 mt-12">
                 <a href="#projects" class="btn-primary inline-flex items-center gap-2">
                     Voir les projets <i class="fas fa-arrow-right text-sm"></i>
@@ -366,6 +485,7 @@
                     Me contacter
                 </a>
             </div>
+
             <div class="flex justify-center gap-5 mt-16">
                 <a href="#" class="social-icon"><i class="fab fa-github text-xl"></i></a>
                 <a href="#" class="social-icon"><i class="fab fa-linkedin-in text-xl"></i></a>
@@ -382,7 +502,8 @@
                 <div class="relative w-full md:w-5/12">
                     <div class="absolute inset-0 bg-gradient-to-tr from-[#FF5722] to-[#FFB300] rounded-3xl blur-2xl opacity-25"></div>
                     <div class="relative bg-card rounded-3xl p-2 border border-white/10">
-                        <img src="https://ui-avatars.com/api/?name=Manandaza+Fran%C3%A7ois&size=400&background=FF5722&color=fff&font-size=0.5"
+                        <!-- VOTRE IMAGE DE PROFIL -->
+                        <img src="profils.png" 
                              alt="Manandaza François"
                              class="w-full max-w-sm mx-auto rounded-2xl" />
                     </div>
@@ -428,7 +549,6 @@
                 <p class="text-gray-400 text-lg mt-2">Technologies modernes maîtrisées</p>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-                <!-- Skill cards (gardez votre code existant) -->
                 <div class="card-dark p-5 text-center" data-skill="95">
                     <i class="fab fa-html5 text-5xl text-[#E44D26]"></i>
                     <h3 class="font-bold mt-3">HTML5</h3>
@@ -523,10 +643,12 @@
                 <p class="text-gray-400 text-lg mt-2">Des créations innovantes et performantes</p>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Projet 1 -->
+                <!-- Projet 1 - VOTRE IMAGE -->
                 <div class="card-dark overflow-hidden">
-                    <div class="h-48 bg-gradient-to-br from-[#FF5722]/30 to-[#FFB300]/30 flex items-center justify-center text-6xl">
-                        📺
+                    <div class="h-48 overflow-hidden">
+                        <img src="image 1.jpg" 
+                             alt="TV Streaming Hub" 
+                             class="w-full h-full object-cover transition hover:scale-105 duration-500" />
                     </div>
                     <div class="p-5">
                         <h3 class="text-xl font-bold">TV Streaming Hub</h3>
@@ -541,10 +663,13 @@
                         </div>
                     </div>
                 </div>
+
                 <!-- Projet 2 -->
                 <div class="card-dark overflow-hidden">
-                    <div class="h-48 bg-gradient-to-br from-[#264DE4]/30 to-[#61DAFB]/30 flex items-center justify-center text-6xl">
-                        📰
+                    <div class="h-48 overflow-hidden">
+                        <img src="image 2.jpg" 
+                             alt="News agrégateur" 
+                             class="w-full h-full object-cover transition hover:scale-105 duration-500" />
                     </div>
                     <div class="p-5">
                         <h3 class="text-xl font-bold">News agrégateur</h3>
@@ -559,10 +684,13 @@
                         </div>
                     </div>
                 </div>
+
                 <!-- Projet 3 -->
                 <div class="card-dark overflow-hidden">
-                    <div class="h-48 bg-gradient-to-br from-[#FF5722]/30 to-[#D84315]/30 flex items-center justify-center text-6xl">
-                        🎮
+                    <div class="h-48 overflow-hidden">
+                        <img src="image 3.jpg" 
+                             alt="Portfolio 3D" 
+                             class="w-full h-full object-cover transition hover:scale-105 duration-500" />
                     </div>
                     <div class="p-5">
                         <h3 class="text-xl font-bold">Portfolio 3D</h3>
@@ -577,10 +705,13 @@
                         </div>
                     </div>
                 </div>
+
                 <!-- Projet 4 -->
                 <div class="card-dark overflow-hidden">
-                    <div class="h-48 bg-gradient-to-br from-[#339933]/30 to-[#21759B]/30 flex items-center justify-center text-6xl">
-                        🏫
+                    <div class="h-48 overflow-hidden">
+                        <img src="image 4.jpg" 
+                             alt="Gestion universitaire" 
+                             class="w-full h-full object-cover transition hover:scale-105 duration-500" />
                     </div>
                     <div class="p-5">
                         <h3 class="text-xl font-bold">Gestion universitaire</h3>
@@ -595,10 +726,13 @@
                         </div>
                     </div>
                 </div>
+
                 <!-- Projet 5 -->
                 <div class="card-dark overflow-hidden">
-                    <div class="h-48 bg-gradient-to-br from-[#F7DF1E]/30 to-[#FFB300]/30 flex items-center justify-center text-6xl">
-                        📊
+                    <div class="h-48 overflow-hidden">
+                        <img src="image 5.jpg" 
+                             alt="Dashboard analytics" 
+                             class="w-full h-full object-cover transition hover:scale-105 duration-500" />
                     </div>
                     <div class="p-5">
                         <h3 class="text-xl font-bold">Dashboard analytics</h3>
@@ -613,10 +747,13 @@
                         </div>
                     </div>
                 </div>
+
                 <!-- Projet 6 -->
                 <div class="card-dark overflow-hidden">
-                    <div class="h-48 bg-gradient-to-br from-[#21759B]/30 to-[#E44D26]/30 flex items-center justify-center text-6xl">
-                        🏢
+                    <div class="h-48 overflow-hidden">
+                        <img src="image 6.jpg" 
+                             alt="Site corporate" 
+                             class="w-full h-full object-cover transition hover:scale-105 duration-500" />
                     </div>
                     <div class="p-5">
                         <h3 class="text-xl font-bold">Site corporate</h3>
@@ -766,7 +903,7 @@
         (function() {
             'use strict';
 
-            // ----- PARTICULES ANIMÉES (Canvas) -----
+            // ----- PARTICULES ANIMÉES -----
             const canvas = document.getElementById('particles-canvas');
             if (canvas) {
                 const ctx = canvas.getContext('2d');
@@ -782,7 +919,6 @@
                 resizeCanvas();
                 window.addEventListener('resize', resizeCanvas);
 
-                // Suivi de la souris
                 canvas.addEventListener('mousemove', (e) => {
                     const rect = canvas.getBoundingClientRect();
                     mouseX = e.clientX - rect.left;
@@ -811,7 +947,6 @@
                         this.x += this.speedX;
                         this.y += this.speedY;
 
-                        // Effet d'attraction vers la souris
                         if (isMouseInCanvas) {
                             const dx = mouseX - this.x;
                             const dy = mouseY - this.y;
@@ -823,7 +958,6 @@
                             }
                         }
 
-                        // Rebond sur les bords
                         if (this.x < 0 || this.x > canvas.width) {
                             this.speedX *= -1;
                             this.x = Math.max(0, Math.min(canvas.width, this.x));
@@ -839,7 +973,6 @@
                         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
                         ctx.fillStyle = `rgba(255, 87, 34, ${this.opacity})`;
                         ctx.fill();
-                        // Glow autour des particules
                         if (this.size > 1.5) {
                             ctx.shadowColor = 'rgba(255, 87, 34, 0.3)';
                             ctx.shadowBlur = 10;
@@ -849,13 +982,11 @@
                     }
                 }
 
-                // Création des particules
                 const particleCount = Math.min(80, Math.floor((canvas.width * canvas.height) / 15000));
                 for (let i = 0; i < particleCount; i++) {
                     particles.push(new Particle());
                 }
 
-                // Connexions entre particules proches
                 function drawLines() {
                     for (let i = 0; i < particles.length; i++) {
                         for (let j = i + 1; j < particles.length; j++) {
@@ -888,7 +1019,7 @@
                 animateParticles();
             }
 
-            // ----- Smooth scroll -----
+            // ----- SMOOTH SCROLL -----
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function(e) {
                     e.preventDefault();
@@ -903,7 +1034,7 @@
                 });
             });
 
-            // ----- Mobile menu toggle -----
+            // ----- MOBILE MENU -----
             const menuBtn = document.getElementById('mobile-menu-btn');
             const mobileMenu = document.getElementById('mobile-menu');
             if (menuBtn) {
@@ -912,7 +1043,7 @@
                 });
             }
 
-            // ----- Animated skill bars -----
+            // ----- SKILL BARS ANIMATION -----
             const skillSection = document.getElementById('skills');
             let animated = false;
 
@@ -934,7 +1065,7 @@
             window.addEventListener('scroll', animateSkills);
             setTimeout(animateSkills, 300);
 
-            // ----- Navbar background -----
+            // ----- NAVBAR -----
             const navbar = document.getElementById('navbar');
             window.addEventListener('scroll', () => {
                 if (window.scrollY > 30) {
@@ -946,7 +1077,7 @@
                 }
             });
 
-            // ----- Formulaire avec validation -----
+            // ----- FORMULAIRE -----
             const form = document.getElementById('contactForm');
             const nameInp = document.getElementById('contact-name');
             const emailInp = document.getElementById('contact-email');
