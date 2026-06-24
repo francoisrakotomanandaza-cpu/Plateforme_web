@@ -8,7 +8,7 @@
     <title>MF.DEV | Manandaza François – Full Stack Developer</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700;800&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
     <script>
@@ -16,44 +16,49 @@
             theme: {
                 extend: {
                     colors: {
-                        primary: '#FF5722',
-                        primaryDark: '#D84315',
-                        secondary: '#FFB300',
-                        accent: '#FFB300',
-                        dark: '#0a0a0f',
-                        card: '#111118',
-                        glass: 'rgba(15,15,20,0.8)',
+                        primary: '#1a2a6c',
+                        primaryLight: '#2d4a8a',
+                        secondary: '#c9a84c',
+                        secondaryLight: '#e8c97a',
+                        dark: '#0b0e1a',
+                        card: '#111827',
+                        cardLight: '#1a2744',
+                        text: '#f3f4f6',
+                        textMuted: '#9ca3af',
                     },
                     fontFamily: {
                         sans: ['Inter', 'system-ui', 'sans-serif'],
                         display: ['Space Grotesk', 'Inter', 'sans-serif'],
-                        orbitron: ['Orbitron', 'monospace'],
+                        elegant: ['Playfair Display', 'serif'],
                     },
                     animation: {
                         float: 'float 6s ease-in-out infinite',
-                        glow: 'glow 2s ease-in-out infinite',
+                        glow: 'glow 2.5s ease-in-out infinite',
                         pulse: 'pulse 3s ease-in-out infinite',
-                        'spin-slow': 'spin 20s linear infinite',
-                        'text-shimmer': 'textShimmer 3s ease-in-out infinite',
-                        'letter-bounce': 'letterBounce 2s ease-in-out infinite',
+                        shimmer: 'shimmer 4s ease-in-out infinite',
+                        fadeInUp: 'fadeInUp 1s ease-out forwards',
+                        scaleIn: 'scaleIn 0.8s ease-out forwards',
                     },
                     keyframes: {
                         float: {
                             '0%,100%': { transform: 'translateY(0px)' },
-                            '50%': { transform: 'translateY(-16px)' },
+                            '50%': { transform: 'translateY(-12px)' },
                         },
                         glow: {
-                            '0%,100%': { textShadow: '0 0 8px #FF5722' },
-                            '50%': { textShadow: '0 0 30px #FF5722' },
+                            '0%,100%': { textShadow: '0 0 15px rgba(201, 168, 76, 0.3)' },
+                            '50%': { textShadow: '0 0 40px rgba(201, 168, 76, 0.5)' },
                         },
-                        textShimmer: {
+                        shimmer: {
                             '0%,100%': { backgroundPosition: '0% center' },
                             '50%': { backgroundPosition: '200% center' },
                         },
-                        letterBounce: {
-                            '0%,100%': { transform: 'translateY(0) rotate(0deg)' },
-                            '25%': { transform: 'translateY(-8px) rotate(2deg)' },
-                            '75%': { transform: 'translateY(-4px) rotate(-1deg)' },
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(30px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        scaleIn: {
+                            '0%': { opacity: '0', transform: 'scale(0.9)' },
+                            '100%': { opacity: '1', transform: 'scale(1)' },
                         },
                     },
                 },
@@ -62,169 +67,146 @@
     </script>
     
     <style>
+        /* ===== RESET & BASE ===== */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            background: #0a0a0f;
-            color: #f0f0f0;
+            background: #0b0e1a;
+            color: #f3f4f6;
             font-family: 'Inter', sans-serif;
             overflow-x: hidden;
+            line-height: 1.7;
         }
 
         ::-webkit-scrollbar {
-            width: 6px;
+            width: 8px;
         }
         ::-webkit-scrollbar-track {
-            background: #111118;
+            background: #111827;
         }
         ::-webkit-scrollbar-thumb {
-            background: #FF5722;
+            background: #c9a84c;
             border-radius: 10px;
         }
 
-        /* Glassmorphism */
+        /* ===== GLASSMORPHISM ===== */
         .glass-dark {
-            background: rgba(15, 15, 20, 0.8);
-            backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 87, 34, 0.2);
+            background: rgba(17, 24, 39, 0.85);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(201, 168, 76, 0.15);
             border-radius: 1.5rem;
         }
 
-        .card-dark {
-            background: #111118;
+        .glass-light {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.06);
             border-radius: 1.5rem;
-            transition: all 0.35s ease;
         }
 
-        .card-dark:hover {
-            border-color: #FF5722;
-            transform: translateY(-6px);
-            box-shadow: 0 20px 40px -12px rgba(255, 87, 34, 0.25);
+        /* ===== CARDS ===== */
+        .card-pro {
+            background: #111827;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 1.5rem;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            overflow: hidden;
         }
 
+        .card-pro::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(201, 168, 76, 0.05), transparent 60%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .card-pro:hover::before {
+            opacity: 1;
+        }
+
+        .card-pro:hover {
+            border-color: rgba(201, 168, 76, 0.3);
+            transform: translateY(-8px);
+            box-shadow: 0 30px 50px -20px rgba(0, 0, 0, 0.8);
+        }
+
+        /* ===== BOUTONS ===== */
         .btn-primary {
-            background: linear-gradient(105deg, #FF5722, #D84315);
-            padding: 0.8rem 2rem;
+            background: linear-gradient(135deg, #c9a84c, #a8893a);
+            padding: 0.85rem 2.2rem;
             border-radius: 3rem;
             font-weight: 600;
-            transition: all 0.3s;
-            box-shadow: 0 4px 16px rgba(255, 87, 34, 0.35);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(201, 168, 76, 0.25);
+            color: #0b0e1a;
+            letter-spacing: 0.5px;
         }
 
         .btn-primary:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 28px rgba(255, 87, 34, 0.5);
+            transform: scale(1.05) translateY(-3px);
+            box-shadow: 0 10px 35px rgba(201, 168, 76, 0.4);
         }
 
         .btn-outline {
-            border: 1.5px solid #FF5722;
-            background: rgba(255, 87, 34, 0.08);
-            padding: 0.8rem 2rem;
+            border: 1.5px solid rgba(201, 168, 76, 0.4);
+            background: rgba(201, 168, 76, 0.05);
+            padding: 0.85rem 2.2rem;
             border-radius: 3rem;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
+            color: #f3f4f6;
+            letter-spacing: 0.5px;
         }
 
         .btn-outline:hover {
-            background: rgba(255, 87, 34, 0.2);
+            background: rgba(201, 168, 76, 0.15);
+            border-color: #c9a84c;
             transform: translateY(-3px);
-            box-shadow: 0 4px 16px rgba(255, 87, 34, 0.2);
+            box-shadow: 0 8px 30px rgba(201, 168, 76, 0.15);
         }
 
+        /* ===== NAVIGATION ===== */
         .nav-link {
             position: relative;
-            transition: color 0.2s;
+            transition: color 0.3s ease;
             font-weight: 500;
+            font-size: 0.95rem;
         }
 
         .nav-link::after {
             content: '';
             position: absolute;
-            bottom: -4px;
-            left: 0;
+            bottom: -6px;
+            left: 50%;
+            transform: translateX(-50%);
             width: 0;
             height: 2.5px;
-            background: #FF5722;
+            background: #c9a84c;
             transition: width 0.3s ease;
             border-radius: 4px;
         }
 
         .nav-link:hover::after {
-            width: 100%;
+            width: 60%;
         }
         .nav-link:hover {
-            color: #FF5722;
+            color: #c9a84c;
         }
 
-        /* ===== NOUVEAU STYLE DE TITRE HERO ===== */
-        .hero-title {
-            font-family: 'Orbitron', 'Space Grotesk', sans-serif;
-            font-weight: 900;
-            letter-spacing: -2px;
-            line-height: 1.1;
-            position: relative;
-            display: inline-block;
-        }
-
-        /* Effet de texte 3D avec ombre portée */
-        .hero-title-3d {
-            background: linear-gradient(135deg, #FF5722 0%, #FFB300 40%, #FF5722 70%, #D84315 100%);
-            background-size: 300% 300%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: textShimmer 4s ease-in-out infinite;
-            text-shadow: 
-                0 0 30px rgba(255, 87, 34, 0.3),
-                0 0 60px rgba(255, 87, 34, 0.1);
-            position: relative;
-        }
-
-        /* Contour lumineux autour du texte */
-        .hero-title-glow {
-            position: relative;
-        }
-
-        .hero-title-glow::before {
-            content: 'Mr François';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #FF5722, #FFB300);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            filter: blur(20px);
-            opacity: 0.3;
-            z-index: -1;
-            animation: pulse 3s ease-in-out infinite;
-        }
-
-        /* Lettres individuelles animées */
-        .letter-animate {
-            display: inline-block;
-            animation: letterBounce 2s ease-in-out infinite;
-        }
-
-        .letter-animate:nth-child(1) { animation-delay: 0s; }
-        .letter-animate:nth-child(2) { animation-delay: 0.1s; }
-        .letter-animate:nth-child(3) { animation-delay: 0.2s; }
-        .letter-animate:nth-child(4) { animation-delay: 0.3s; }
-        .letter-animate:nth-child(5) { animation-delay: 0.4s; }
-        .letter-animate:nth-child(6) { animation-delay: 0.5s; }
-        .letter-animate:nth-child(7) { animation-delay: 0.6s; }
-        .letter-animate:nth-child(8) { animation-delay: 0.7s; }
-        .letter-animate:nth-child(9) { animation-delay: 0.8s; }
-        .letter-animate:nth-child(10) { animation-delay: 0.9s; }
-        .letter-animate:nth-child(11) { animation-delay: 1.0s; }
-
-        /* ===== HERO BACKGROUND ===== */
+        /* ===== HERO ===== */
         #hero {
             position: relative;
             min-height: 100vh;
@@ -232,27 +214,25 @@
             align-items: center;
             justify-content: center;
             overflow: hidden;
-            background: #0a0a0f;
+            background: #0b0e1a;
         }
 
-        .hero-bg-image {
+        .hero-bg {
             position: absolute;
             inset: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
             z-index: 0;
-            opacity: 0.6;
+            background:
+                radial-gradient(ellipse at 20% 30%, rgba(26, 42, 108, 0.4) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 70%, rgba(201, 168, 76, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(26, 42, 108, 0.2) 0%, transparent 70%);
         }
 
-        .hero-overlay {
+        .hero-bg::after {
+            content: '';
             position: absolute;
             inset: 0;
-            z-index: 1;
-            background: 
-                radial-gradient(ellipse at 30% 20%, rgba(255, 87, 34, 0.15) 0%, transparent 60%),
-                radial-gradient(ellipse at 70% 80%, rgba(255, 179, 0, 0.08) 0%, transparent 50%),
-                linear-gradient(180deg, rgba(10, 10, 15, 0.6) 0%, rgba(10, 10, 15, 0.85) 100%);
+            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+            pointer-events: none;
         }
 
         .hero-content {
@@ -260,153 +240,216 @@
             z-index: 2;
         }
 
-        #particles-canvas {
-            position: absolute;
-            inset: 0;
-            z-index: 1;
-            pointer-events: none;
-            width: 100%;
-            height: 100%;
+        /* ===== TITRE HERO ===== */
+        .hero-title {
+            font-family: 'Playfair Display', 'Space Grotesk', serif;
+            font-weight: 700;
+            letter-spacing: -2px;
+            line-height: 1.1;
         }
 
-        .grain-texture {
-            position: absolute;
-            inset: 0;
-            z-index: 1;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-            pointer-events: none;
-            opacity: 0.6;
+        .hero-title-gradient {
+            background: linear-gradient(135deg, #f3f4f6 0%, #c9a84c 40%, #e8c97a 70%, #f3f4f6 100%);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 5s ease-in-out infinite;
         }
 
+        .hero-subtitle {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 500;
+            letter-spacing: 2px;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+        }
+
+        .hero-subtitle span {
+            color: #c9a84c;
+        }
+
+        /* ===== BADGES TECH ===== */
         .tech-badge {
-            background: rgba(255, 87, 34, 0.2);
-            color: #FFB300;
-            padding: 0.2rem 0.9rem;
+            background: rgba(201, 168, 76, 0.12);
+            color: #e8c97a;
+            padding: 0.25rem 1rem;
             border-radius: 30px;
             font-size: 0.7rem;
             font-weight: 600;
-            letter-spacing: 0.3px;
+            letter-spacing: 0.5px;
+            border: 1px solid rgba(201, 168, 76, 0.1);
         }
 
+        /* ===== SOCIAL ICONS ===== */
         .social-icon {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 44px;
-            height: 44px;
-            background: rgba(255, 255, 255, 0.06);
+            width: 46px;
+            height: 46px;
+            background: rgba(255, 255, 255, 0.04);
             border-radius: 50%;
-            transition: 0.3s;
-            border: 1px solid transparent;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            color: #9ca3af;
         }
 
         .social-icon:hover {
-            background: #FF5722;
-            transform: translateY(-4px);
-            border-color: #FF5722;
-            box-shadow: 0 8px 20px rgba(255, 87, 34, 0.3);
+            background: rgba(201, 168, 76, 0.15);
+            border-color: #c9a84c;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(201, 168, 76, 0.15);
+            color: #c9a84c;
         }
 
+        /* ===== SKILL FILL ===== */
         .skill-fill {
-            background: linear-gradient(90deg, #FF5722, #FFB300);
-            height: 8px;
+            background: linear-gradient(90deg, #c9a84c, #e8c97a);
+            height: 6px;
             border-radius: 8px;
             transition: width 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            box-shadow: 0 0 12px rgba(255, 87, 34, 0.3);
+            box-shadow: 0 0 15px rgba(201, 168, 76, 0.2);
+        }
+
+        /* ===== FORM ===== */
+        .form-input {
+            width: 100%;
+            padding: 0.9rem 1.2rem;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 1rem;
+            transition: all 0.3s ease;
+            color: #f3f4f6;
+            outline: none;
+        }
+
+        .form-input:focus {
+            border-color: #c9a84c;
+            box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.1);
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .form-input::placeholder {
+            color: #6b7280;
         }
 
         .input-error {
-            border-color: #ff6b6b !important;
-            background: rgba(255, 107, 107, 0.08) !important;
+            border-color: #ef4444 !important;
+            background: rgba(239, 68, 68, 0.05) !important;
         }
 
         .input-success {
-            border-color: #51cf66 !important;
-            background: rgba(81, 207, 102, 0.08) !important;
+            border-color: #10b981 !important;
+            background: rgba(16, 185, 129, 0.05) !important;
         }
 
-        .error-message {
-            color: #ff6b6b;
-            font-size: 0.7rem;
-            margin-top: 0.3rem;
-            display: flex;
-            align-items: center;
-            gap: 6px;
+        /* ===== DIVIDER ===== */
+        .section-divider {
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, #c9a84c, #e8c97a);
+            border-radius: 4px;
+            margin: 0 auto 1.5rem auto;
         }
 
-        .error-message.hidden {
-            display: none;
-        }
-
-        .wave-divider {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            z-index: 2;
-            opacity: 0.15;
-        }
-
-        /* Style du sous-titre */
-        .hero-subtitle {
-            font-family: 'Space Grotesk', sans-serif;
-            font-weight: 700;
-            letter-spacing: 1px;
-        }
-
-        .hero-subtitle span {
-            background: linear-gradient(135deg, #FFB300, #FF5722);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        /* Effet de tape sur le texte */
-        .typewriter-text {
-            overflow: hidden;
-            border-right: 3px solid #FF5722;
-            white-space: nowrap;
-            animation: typewriter 3s steps(40) 1s forwards, blinkCursor 0.8s step-end infinite;
-            width: 0;
-            display: inline-block;
-        }
-
-        @keyframes typewriter {
-            from { width: 0; }
-            to { width: 100%; }
-        }
-
-        @keyframes blinkCursor {
-            from, to { border-color: transparent; }
-            50% { border-color: #FF5722; }
-        }
-
+        /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
-            .hero-bg-image {
-                opacity: 0.4;
-            }
             .hero-title {
-                font-size: 2.5rem !important;
+                font-size: 2.8rem !important;
                 letter-spacing: -1px;
             }
-            .typewriter-text {
-                white-space: normal;
-                border-right: none;
-                animation: none;
-                width: 100%;
+            .hero-subtitle {
+                font-size: 0.9rem;
+                letter-spacing: 1px;
+            }
+            .glass-dark {
+                backdrop-filter: blur(12px);
+            }
+            .card-pro:hover {
+                transform: translateY(-4px);
+            }
+            .btn-primary,
+            .btn-outline {
+                padding: 0.7rem 1.5rem;
+                font-size: 0.9rem;
             }
         }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2.2rem !important;
+            }
+            .section-title {
+                font-size: 2rem !important;
+            }
+        }
+
+        /* ===== ANIMATIONS AU SCROLL ===== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-40px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .reveal-left.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(40px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .reveal-right.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .reveal-scale {
+            opacity: 0;
+            transform: scale(0.9);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .reveal-scale.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Délais pour les enfants */
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.2s; }
+        .delay-3 { transition-delay: 0.3s; }
+        .delay-4 { transition-delay: 0.4s; }
+        .delay-5 { transition-delay: 0.5s; }
+        .delay-6 { transition-delay: 0.6s; }
     </style>
 </head>
 <body>
 
-    <!-- ========== NAVIGATION ========== -->
-    <nav class="fixed top-0 left-0 w-full z-50 transition-all duration-300 py-4 bg-dark/90 backdrop-blur-xl border-b border-white/5" id="navbar">
+    <!-- ============================================================ -->
+    <!-- NAVIGATION -->
+    <!-- ============================================================ -->
+    <nav class="fixed top-0 left-0 w-full z-50 transition-all duration-400 py-4 bg-dark/95 backdrop-blur-xl border-b border-white/5" id="navbar">
         <div class="container mx-auto px-6 md:px-12 flex justify-between items-center">
-            <a href="#hero" class="text-2xl md:text-3xl font-display font-extrabold bg-gradient-to-r from-[#FF5722] to-[#FFB300] bg-clip-text text-transparent tracking-tight">
-                MF.DEV
+            <a href="#hero" class="text-2xl md:text-3xl font-display font-extrabold tracking-tight">
+                <span class="text-white">MF.</span><span class="text-[#c9a84c]">DEV</span>
             </a>
-            <div class="hidden md:flex space-x-8">
+            <div class="hidden md:flex items-center space-x-10">
                 <a href="#hero" class="nav-link text-gray-300">Accueil</a>
                 <a href="#about" class="nav-link text-gray-300">À propos</a>
                 <a href="#skills" class="nav-link text-gray-300">Compétences</a>
@@ -414,124 +457,116 @@
                 <a href="#services" class="nav-link text-gray-300">Services</a>
                 <a href="#contact" class="nav-link text-gray-300">Contact</a>
             </div>
-            <button id="mobile-menu-btn" class="md:hidden text-white text-2xl hover:text-[#FF5722] transition">
+            <button id="mobile-menu-btn" class="md:hidden text-white text-2xl hover:text-[#c9a84c] transition">
                 <i class="fas fa-bars"></i>
             </button>
         </div>
 
-        <div id="mobile-menu" class="hidden md:hidden glass-dark mt-3 mx-6 p-6 flex flex-col space-y-4 rounded-2xl">
-            <a href="#hero" class="text-gray-200 hover:text-[#FF5722] transition font-medium">Accueil</a>
-            <a href="#about" class="text-gray-200 hover:text-[#FF5722] transition font-medium">À propos</a>
-            <a href="#skills" class="text-gray-200 hover:text-[#FF5722] transition font-medium">Compétences</a>
-            <a href="#projects" class="text-gray-200 hover:text-[#FF5722] transition font-medium">Projets</a>
-            <a href="#services" class="text-gray-200 hover:text-[#FF5722] transition font-medium">Services</a>
-            <a href="#contact" class="text-gray-200 hover:text-[#FF5722] transition font-medium">Contact</a>
+        <div id="mobile-menu" class="hidden md:hidden glass-dark mt-3 mx-6 p-6 flex flex-col space-y-4 rounded-2xl border border-white/5">
+            <a href="#hero" class="text-gray-200 hover:text-[#c9a84c] transition font-medium py-2 border-b border-white/5">Accueil</a>
+            <a href="#about" class="text-gray-200 hover:text-[#c9a84c] transition font-medium py-2 border-b border-white/5">À propos</a>
+            <a href="#skills" class="text-gray-200 hover:text-[#c9a84c] transition font-medium py-2 border-b border-white/5">Compétences</a>
+            <a href="#projects" class="text-gray-200 hover:text-[#c9a84c] transition font-medium py-2 border-b border-white/5">Projets</a>
+            <a href="#services" class="text-gray-200 hover:text-[#c9a84c] transition font-medium py-2 border-b border-white/5">Services</a>
+            <a href="#contact" class="text-gray-200 hover:text-[#c9a84c] transition font-medium py-2">Contact</a>
         </div>
     </nav>
 
-    <!-- ========== HERO AVEC NOUVEAU DESIGN DE LETTRES ========== -->
+    <!-- ============================================================ -->
+    <!-- HERO -->
+    <!-- ============================================================ -->
     <section id="hero">
-        <!-- Image de fond -->
-        <img src="https://images.unsplash.com/photo-1639322537228-f710d846310a?w=1920&q=80" 
-             alt="Technologie numérique" 
-             class="hero-bg-image" 
-             loading="lazy" />
-        
-        <div class="hero-overlay"></div>
-        <div class="grain-texture"></div>
-        <canvas id="particles-canvas"></canvas>
+        <div class="hero-bg"></div>
 
-        <svg class="wave-divider" viewBox="0 0 1440 100" preserveAspectRatio="none">
-            <path d="M0,50 C360,100 720,0 1080,50 C1260,75 1380,60 1440,50 L1440,100 L0,100 Z" fill="#FF5722" opacity="0.3"/>
-        </svg>
+        <!-- Particules (élégantes) -->
+        <canvas id="particles-canvas" style="position:absolute;inset:0;z-index:1;pointer-events:none;width:100%;height:100%;"></canvas>
 
         <div class="hero-content container mx-auto px-6 text-center">
-            <div class="inline-block mb-6 px-5 py-1.5 rounded-full bg-white/5 border border-white/10 text-sm backdrop-blur-sm">
-                <i class="fas fa-code text-[#FF5722] mr-2"></i> Full Stack & Créatif
+            <div class="inline-block mb-6 px-5 py-2 rounded-full glass-light text-sm font-medium tracking-wider">
+                <i class="fas fa-code text-[#c9a84c] mr-2"></i> Full Stack & Digital Creative
             </div>
 
-            <!-- ===== NOUVEAU TITRE AVEC EFFET 3D ET LETTRES ANIMÉES ===== -->
-            <h1 class="text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-display font-extrabold tracking-tighter leading-[1.1] hero-title hero-title-glow">
-                <span class="hero-title-3d">
-                    <!-- Découpage en lettres pour animation individuelle -->
-                    <span class="letter-animate">M</span>
-                    <span class="letter-animate">r</span>
-                    <span class="letter-animate"> </span>
-                    <span class="letter-animate">F</span>
-                    <span class="letter-animate">r</span>
-                    <span class="letter-animate">a</span>
-                    <span class="letter-animate">n</span>
-                    <span class="letter-animate">ç</span>
-                    <span class="letter-animate">o</span>
-                    <span class="letter-animate">i</span>
-                    <span class="letter-animate">s</span>
-                </span>
+            <h1 class="hero-title text-5xl md:text-7xl lg:text-8xl xl:text-9xl">
+                <span class="hero-title-gradient">Mr François</span>
             </h1>
 
-            <!-- Sous-titre avec effet typewriter -->
-            <p class="text-xl md:text-2xl text-gray-200 mt-6 max-w-3xl mx-auto font-medium hero-subtitle">
-                Manandaza François — <span>Full Stack Developer & Digital Creative</span>
+            <p class="hero-subtitle text-gray-300 mt-6">
+                Manandaza François — <span>Full Stack Developer</span>
             </p>
 
-            <p class="text-gray-300 max-w-xl mx-auto mt-4 text-lg backdrop-blur-sm px-4 py-2 rounded-full bg-black/20 inline-block">
-                <span class="typewriter-text">Applications web modernes, UI/UX impactant</span>
+            <p class="text-gray-400 max-w-xl mx-auto mt-4 text-lg">
+                Applications web modernes, UI/UX premium, solutions sur mesure
             </p>
 
             <div class="flex flex-wrap justify-center gap-5 mt-12">
                 <a href="#projects" class="btn-primary inline-flex items-center gap-2">
-                    Voir les projets <i class="fas fa-arrow-right text-sm"></i>
+                    <i class="fas fa-rocket text-sm"></i> Voir les projets
                 </a>
                 <a href="#contact" class="btn-outline inline-flex items-center gap-2">
-                    Me contacter
+                    <i class="fas fa-paper-plane text-sm"></i> Me contacter
                 </a>
             </div>
 
-            <div class="flex justify-center gap-5 mt-16">
-                <a href="#" class="social-icon"><i class="fab fa-github text-xl"></i></a>
-                <a href="#" class="social-icon"><i class="fab fa-linkedin-in text-xl"></i></a>
-                <a href="#" class="social-icon"><i class="fab fa-facebook-f text-xl"></i></a>
-                <a href="#" class="social-icon"><i class="fab fa-twitter text-xl"></i></a>
+            <div class="flex justify-center gap-4 mt-16">
+                <a href="#" class="social-icon"><i class="fab fa-github text-lg"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-linkedin-in text-lg"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-twitter text-lg"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-youtube text-lg"></i></a>
             </div>
+        </div>
+
+        <!-- Flèche vers le bas -->
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 animate-bounce">
+            <a href="#about" class="text-[#c9a84c]/50 hover:text-[#c9a84c] transition">
+                <i class="fas fa-chevron-down text-xl"></i>
+            </a>
         </div>
     </section>
 
-    <!-- ========== ABOUT ========== -->
+    <!-- ============================================================ -->
+    <!-- ABOUT -->
+    <!-- ============================================================ -->
     <section id="about" class="py-28 px-6">
         <div class="container mx-auto max-w-6xl">
             <div class="flex flex-col md:flex-row gap-14 items-center">
-                <div class="relative w-full md:w-5/12">
-                    <div class="absolute inset-0 bg-gradient-to-tr from-[#FF5722] to-[#FFB300] rounded-3xl blur-2xl opacity-25"></div>
+                <div class="relative w-full md:w-5/12 reveal-left">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-[#c9a84c] to-[#e8c97a] rounded-3xl blur-2xl opacity-10"></div>
                     <div class="relative bg-card rounded-3xl p-2 border border-white/10">
-                        <!-- VOTRE IMAGE DE PROFIL -->
                         <img src="profils.png" 
                              alt="Manandaza François"
                              class="w-full max-w-sm mx-auto rounded-2xl" />
                     </div>
                 </div>
-                <div class="w-full md:w-7/12">
-                    <h2 class="text-4xl md:text-5xl font-display font-bold mb-5">
-                        À propos <span class="text-[#FF5722]">de moi</span>
+
+                <div class="w-full md:w-7/12 reveal-right">
+                    <span class="text-[#c9a84c] font-semibold tracking-widest text-sm uppercase">À propos</span>
+                    <h2 class="text-4xl md:text-5xl font-display font-bold mt-2">
+                        Qui suis-<span class="text-[#c9a84c]">je</span>
                     </h2>
+                    <div class="section-divider"></div>
+
                     <p class="text-gray-300 leading-relaxed text-lg">
-                        Développeur Full Stack avec une passion pour le design et l'innovation.
-                        Je transforme vos idées en expériences numériques fluides, performantes et esthétiques.
+                        Développeur Full Stack passionné par l'innovation et le design d'exception. 
+                        J'accompagne les entreprises dans leur transformation digitale avec des 
+                        solutions techniques robustes et des interfaces élégantes.
                     </p>
-                    <div class="grid grid-cols-2 gap-5 mt-8">
-                        <div class="card-dark p-5 text-center">
-                            <i class="fas fa-code text-3xl text-[#FF5722] mb-2"></i>
-                            <p class="font-semibold">Backend robuste</p>
+
+                    <div class="grid grid-cols-2 gap-4 mt-8">
+                        <div class="card-pro p-5 text-center">
+                            <i class="fas fa-code text-3xl text-[#c9a84c] mb-2"></i>
+                            <p class="font-semibold text-sm">Backend solide</p>
                         </div>
-                        <div class="card-dark p-5 text-center">
-                            <i class="fas fa-paintbrush text-3xl text-[#FFB300] mb-2"></i>
-                            <p class="font-semibold">UI créative</p>
+                        <div class="card-pro p-5 text-center">
+                            <i class="fas fa-paintbrush text-3xl text-[#c9a84c] mb-2"></i>
+                            <p class="font-semibold text-sm">UI raffinée</p>
                         </div>
-                        <div class="card-dark p-5 text-center">
-                            <i class="fas fa-mobile-alt text-3xl text-[#FF5722] mb-2"></i>
-                            <p class="font-semibold">Responsive</p>
+                        <div class="card-pro p-5 text-center">
+                            <i class="fas fa-mobile-alt text-3xl text-[#c9a84c] mb-2"></i>
+                            <p class="font-semibold text-sm">Responsive</p>
                         </div>
-                        <div class="card-dark p-5 text-center">
-                            <i class="fas fa-rocket text-3xl text-[#FFB300] mb-2"></i>
-                            <p class="font-semibold">Performance</p>
+                        <div class="card-pro p-5 text-center">
+                            <i class="fas fa-rocket text-3xl text-[#c9a84c] mb-2"></i>
+                            <p class="font-semibold text-sm">Performance</p>
                         </div>
                     </div>
                 </div>
@@ -539,92 +574,97 @@
         </div>
     </section>
 
-    <!-- ========== SKILLS ========== -->
+    <!-- ============================================================ -->
+    <!-- SKILLS -->
+    <!-- ============================================================ -->
     <section id="skills" class="py-28 px-6 bg-gradient-to-b from-dark to-card">
         <div class="container mx-auto max-w-7xl">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-display font-bold">
-                    Expertise <span class="text-[#FF5722]">technique</span>
+            <div class="text-center reveal">
+                <span class="text-[#c9a84c] font-semibold tracking-widest text-sm uppercase">Expertise</span>
+                <h2 class="text-4xl md:text-5xl font-display font-bold mt-2">
+                    Compétences <span class="text-[#c9a84c]">techniques</span>
                 </h2>
-                <p class="text-gray-400 text-lg mt-2">Technologies modernes maîtrisées</p>
+                <div class="section-divider"></div>
+                <p class="text-gray-400 text-lg">Technologies modernes maîtrisées</p>
             </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-                <div class="card-dark p-5 text-center" data-skill="95">
+
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 mt-16">
+                <div class="card-pro p-5 text-center reveal-scale delay-1" data-skill="95">
                     <i class="fab fa-html5 text-5xl text-[#E44D26]"></i>
                     <h3 class="font-bold mt-3">HTML5</h3>
-                    <div class="bg-white/10 h-2 rounded-full mt-3 overflow-hidden">
+                    <div class="bg-white/10 h-1.5 rounded-full mt-3 overflow-hidden">
                         <div class="skill-fill w-0 rounded-full"></div>
                     </div>
                     <span class="text-xs text-gray-400 mt-1 block">95%</span>
                 </div>
-                <div class="card-dark p-5 text-center" data-skill="90">
+                <div class="card-pro p-5 text-center reveal-scale delay-2" data-skill="90">
                     <i class="fab fa-css3-alt text-5xl text-[#264DE4]"></i>
                     <h3 class="font-bold mt-3">CSS3/Tailwind</h3>
-                    <div class="bg-white/10 h-2 rounded-full mt-3 overflow-hidden">
+                    <div class="bg-white/10 h-1.5 rounded-full mt-3 overflow-hidden">
                         <div class="skill-fill w-0 rounded-full"></div>
                     </div>
                     <span class="text-xs text-gray-400 mt-1 block">90%</span>
                 </div>
-                <div class="card-dark p-5 text-center" data-skill="92">
+                <div class="card-pro p-5 text-center reveal-scale delay-3" data-skill="92">
                     <i class="fab fa-js text-5xl text-[#F7DF1E]"></i>
                     <h3 class="font-bold mt-3">JavaScript</h3>
-                    <div class="bg-white/10 h-2 rounded-full mt-3 overflow-hidden">
+                    <div class="bg-white/10 h-1.5 rounded-full mt-3 overflow-hidden">
                         <div class="skill-fill w-0 rounded-full"></div>
                     </div>
                     <span class="text-xs text-gray-400 mt-1 block">92%</span>
                 </div>
-                <div class="card-dark p-5 text-center" data-skill="87">
+                <div class="card-pro p-5 text-center reveal-scale delay-4" data-skill="87">
                     <i class="fab fa-react text-5xl text-[#61DAFB]"></i>
                     <h3 class="font-bold mt-3">React</h3>
-                    <div class="bg-white/10 h-2 rounded-full mt-3 overflow-hidden">
+                    <div class="bg-white/10 h-1.5 rounded-full mt-3 overflow-hidden">
                         <div class="skill-fill w-0 rounded-full"></div>
                     </div>
                     <span class="text-xs text-gray-400 mt-1 block">87%</span>
                 </div>
-                <div class="card-dark p-5 text-center" data-skill="85">
+                <div class="card-pro p-5 text-center reveal-scale delay-5" data-skill="85">
                     <i class="fab fa-node-js text-5xl text-[#339933]"></i>
                     <h3 class="font-bold mt-3">Node.js</h3>
-                    <div class="bg-white/10 h-2 rounded-full mt-3 overflow-hidden">
+                    <div class="bg-white/10 h-1.5 rounded-full mt-3 overflow-hidden">
                         <div class="skill-fill w-0 rounded-full"></div>
                     </div>
                     <span class="text-xs text-gray-400 mt-1 block">85%</span>
                 </div>
-                <div class="card-dark p-5 text-center" data-skill="88">
+                <div class="card-pro p-5 text-center reveal-scale delay-6" data-skill="88">
                     <i class="fab fa-wordpress text-5xl text-[#21759B]"></i>
                     <h3 class="font-bold mt-3">WordPress</h3>
-                    <div class="bg-white/10 h-2 rounded-full mt-3 overflow-hidden">
+                    <div class="bg-white/10 h-1.5 rounded-full mt-3 overflow-hidden">
                         <div class="skill-fill w-0 rounded-full"></div>
                     </div>
                     <span class="text-xs text-gray-400 mt-1 block">88%</span>
                 </div>
-                <div class="card-dark p-5 text-center" data-skill="89">
+                <div class="card-pro p-5 text-center reveal-scale delay-1" data-skill="89">
                     <i class="fab fa-github text-5xl text-white"></i>
                     <h3 class="font-bold mt-3">Git/GitHub</h3>
-                    <div class="bg-white/10 h-2 rounded-full mt-3 overflow-hidden">
+                    <div class="bg-white/10 h-1.5 rounded-full mt-3 overflow-hidden">
                         <div class="skill-fill w-0 rounded-full"></div>
                     </div>
                     <span class="text-xs text-gray-400 mt-1 block">89%</span>
                 </div>
-                <div class="card-dark p-5 text-center" data-skill="86">
+                <div class="card-pro p-5 text-center reveal-scale delay-2" data-skill="86">
                     <i class="fas fa-database text-5xl text-green-400"></i>
                     <h3 class="font-bold mt-3">MongoDB</h3>
-                    <div class="bg-white/10 h-2 rounded-full mt-3 overflow-hidden">
+                    <div class="bg-white/10 h-1.5 rounded-full mt-3 overflow-hidden">
                         <div class="skill-fill w-0 rounded-full"></div>
                     </div>
                     <span class="text-xs text-gray-400 mt-1 block">86%</span>
                 </div>
-                <div class="card-dark p-5 text-center" data-skill="84">
+                <div class="card-pro p-5 text-center reveal-scale delay-3" data-skill="84">
                     <i class="fas fa-server text-5xl text-gray-300"></i>
                     <h3 class="font-bold mt-3">Express.js</h3>
-                    <div class="bg-white/10 h-2 rounded-full mt-3 overflow-hidden">
+                    <div class="bg-white/10 h-1.5 rounded-full mt-3 overflow-hidden">
                         <div class="skill-fill w-0 rounded-full"></div>
                     </div>
                     <span class="text-xs text-gray-400 mt-1 block">84%</span>
                 </div>
-                <div class="card-dark p-5 text-center" data-skill="91">
+                <div class="card-pro p-5 text-center reveal-scale delay-4" data-skill="91">
                     <i class="fab fa-figma text-5xl text-pink-400"></i>
                     <h3 class="font-bold mt-3">Figma/UI</h3>
-                    <div class="bg-white/10 h-2 rounded-full mt-3 overflow-hidden">
+                    <div class="bg-white/10 h-1.5 rounded-full mt-3 overflow-hidden">
                         <div class="skill-fill w-0 rounded-full"></div>
                     </div>
                     <span class="text-xs text-gray-400 mt-1 block">91%</span>
@@ -633,138 +673,162 @@
         </div>
     </section>
 
-    <!-- ========== PROJECTS ========== -->
+    <!-- ============================================================ -->
+    <!-- PROJECTS -->
+    <!-- ============================================================ -->
     <section id="projects" class="py-28 px-6">
         <div class="container mx-auto max-w-7xl">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-display font-bold">
-                    Projets <span class="text-[#FF5722]">récents</span>
+            <div class="text-center reveal">
+                <span class="text-[#c9a84c] font-semibold tracking-widest text-sm uppercase">Portfolio</span>
+                <h2 class="text-4xl md:text-5xl font-display font-bold mt-2">
+                    Projets <span class="text-[#c9a84c]">récents</span>
                 </h2>
-                <p class="text-gray-400 text-lg mt-2">Des créations innovantes et performantes</p>
+                <div class="section-divider"></div>
+                <p class="text-gray-400 text-lg">Des réalisations sur mesure</p>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Projet 1 - VOTRE IMAGE -->
-                <div class="card-dark overflow-hidden">
-                    <div class="h-48 overflow-hidden">
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-16">
+                <div class="card-pro overflow-hidden reveal-scale delay-1">
+                    <div class="h-56 overflow-hidden bg-gradient-to-br from-[#1a2a6c] to-[#2d4a8a]">
                         <img src="image 1.jpg" 
                              alt="TV Streaming Hub" 
-                             class="w-full h-full object-cover transition hover:scale-105 duration-500" />
+                             class="w-full h-full object-cover transition duration-700 hover:scale-110" />
                     </div>
-                    <div class="p-5">
+                    <div class="p-6">
                         <h3 class="text-xl font-bold">TV Streaming Hub</h3>
                         <p class="text-gray-400 text-sm">Recommandations AI & interface fluide</p>
-                        <div class="flex gap-2 my-3 flex-wrap">
+                        <div class="flex flex-wrap gap-2 my-4">
                             <span class="tech-badge">React</span>
                             <span class="tech-badge">Node.js</span>
+                            <span class="tech-badge">AI</span>
                         </div>
-                        <div class="flex gap-4">
-                            <a href="#" class="text-gray-400 hover:text-[#FF5722] transition"><i class="fab fa-github"></i> Code</a>
-                            <a href="#" class="text-gray-400 hover:text-[#FF5722] transition"><i class="fas fa-external-link-alt"></i> Demo</a>
+                        <div class="flex gap-5">
+                            <a href="#" class="text-gray-400 hover:text-[#c9a84c] transition text-sm flex items-center gap-2">
+                                <i class="fab fa-github"></i> Code
+                            </a>
+                            <a href="#" class="text-gray-400 hover:text-[#c9a84c] transition text-sm flex items-center gap-2">
+                                <i class="fas fa-external-link-alt"></i> Demo
+                            </a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Projet 2 -->
-                <div class="card-dark overflow-hidden">
-                    <div class="h-48 overflow-hidden">
+                <div class="card-pro overflow-hidden reveal-scale delay-2">
+                    <div class="h-56 overflow-hidden bg-gradient-to-br from-[#1a2a6c] to-[#2d4a8a]">
                         <img src="image 2.jpg" 
                              alt="News agrégateur" 
-                             class="w-full h-full object-cover transition hover:scale-105 duration-500" />
+                             class="w-full h-full object-cover transition duration-700 hover:scale-110" />
                     </div>
-                    <div class="p-5">
+                    <div class="p-6">
                         <h3 class="text-xl font-bold">News agrégateur</h3>
                         <p class="text-gray-400 text-sm">Actualités en temps réel</p>
-                        <div class="flex gap-2 my-3 flex-wrap">
+                        <div class="flex flex-wrap gap-2 my-4">
                             <span class="tech-badge">Next.js</span>
                             <span class="tech-badge">Express</span>
                         </div>
-                        <div class="flex gap-4">
-                            <a href="#" class="text-gray-400 hover:text-[#FF5722] transition"><i class="fab fa-github"></i> Code</a>
-                            <a href="#" class="text-gray-400 hover:text-[#FF5722] transition"><i class="fas fa-external-link-alt"></i> Demo</a>
+                        <div class="flex gap-5">
+                            <a href="#" class="text-gray-400 hover:text-[#c9a84c] transition text-sm flex items-center gap-2">
+                                <i class="fab fa-github"></i> Code
+                            </a>
+                            <a href="#" class="text-gray-400 hover:text-[#c9a84c] transition text-sm flex items-center gap-2">
+                                <i class="fas fa-external-link-alt"></i> Demo
+                            </a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Projet 3 -->
-                <div class="card-dark overflow-hidden">
-                    <div class="h-48 overflow-hidden">
+                <div class="card-pro overflow-hidden reveal-scale delay-3">
+                    <div class="h-56 overflow-hidden bg-gradient-to-br from-[#1a2a6c] to-[#2d4a8a]">
                         <img src="image 3.jpg" 
                              alt="Portfolio 3D" 
-                             class="w-full h-full object-cover transition hover:scale-105 duration-500" />
+                             class="w-full h-full object-cover transition duration-700 hover:scale-110" />
                     </div>
-                    <div class="p-5">
+                    <div class="p-6">
                         <h3 class="text-xl font-bold">Portfolio 3D</h3>
                         <p class="text-gray-400 text-sm">Animations immersives</p>
-                        <div class="flex gap-2 my-3 flex-wrap">
+                        <div class="flex flex-wrap gap-2 my-4">
                             <span class="tech-badge">Three.js</span>
                             <span class="tech-badge">React</span>
                         </div>
-                        <div class="flex gap-4">
-                            <a href="#" class="text-gray-400 hover:text-[#FF5722] transition"><i class="fab fa-github"></i> Code</a>
-                            <a href="#" class="text-gray-400 hover:text-[#FF5722] transition"><i class="fas fa-external-link-alt"></i> Demo</a>
+                        <div class="flex gap-5">
+                            <a href="#" class="text-gray-400 hover:text-[#c9a84c] transition text-sm flex items-center gap-2">
+                                <i class="fab fa-github"></i> Code
+                            </a>
+                            <a href="#" class="text-gray-400 hover:text-[#c9a84c] transition text-sm flex items-center gap-2">
+                                <i class="fas fa-external-link-alt"></i> Demo
+                            </a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Projet 4 -->
-                <div class="card-dark overflow-hidden">
-                    <div class="h-48 overflow-hidden">
+                <div class="card-pro overflow-hidden reveal-scale delay-4">
+                    <div class="h-56 overflow-hidden bg-gradient-to-br from-[#1a2a6c] to-[#2d4a8a]">
                         <img src="image 4.jpg" 
                              alt="Gestion universitaire" 
-                             class="w-full h-full object-cover transition hover:scale-105 duration-500" />
+                             class="w-full h-full object-cover transition duration-700 hover:scale-110" />
                     </div>
-                    <div class="p-5">
+                    <div class="p-6">
                         <h3 class="text-xl font-bold">Gestion universitaire</h3>
                         <p class="text-gray-400 text-sm">ERP pour établissements</p>
-                        <div class="flex gap-2 my-3 flex-wrap">
+                        <div class="flex flex-wrap gap-2 my-4">
                             <span class="tech-badge">MERN</span>
                             <span class="tech-badge">Redux</span>
                         </div>
-                        <div class="flex gap-4">
-                            <a href="#" class="text-gray-400 hover:text-[#FF5722] transition"><i class="fab fa-github"></i> Code</a>
-                            <a href="#" class="text-gray-400 hover:text-[#FF5722] transition"><i class="fas fa-external-link-alt"></i> Demo</a>
+                        <div class="flex gap-5">
+                            <a href="#" class="text-gray-400 hover:text-[#c9a84c] transition text-sm flex items-center gap-2">
+                                <i class="fab fa-github"></i> Code
+                            </a>
+                            <a href="#" class="text-gray-400 hover:text-[#c9a84c] transition text-sm flex items-center gap-2">
+                                <i class="fas fa-external-link-alt"></i> Demo
+                            </a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Projet 5 -->
-                <div class="card-dark overflow-hidden">
-                    <div class="h-48 overflow-hidden">
+                <div class="card-pro overflow-hidden reveal-scale delay-5">
+                    <div class="h-56 overflow-hidden bg-gradient-to-br from-[#1a2a6c] to-[#2d4a8a]">
                         <img src="image 5.jpg" 
                              alt="Dashboard analytics" 
-                             class="w-full h-full object-cover transition hover:scale-105 duration-500" />
+                             class="w-full h-full object-cover transition duration-700 hover:scale-110" />
                     </div>
-                    <div class="p-5">
+                    <div class="p-6">
                         <h3 class="text-xl font-bold">Dashboard analytics</h3>
                         <p class="text-gray-400 text-sm">Stats temps réel</p>
-                        <div class="flex gap-2 my-3 flex-wrap">
+                        <div class="flex flex-wrap gap-2 my-4">
                             <span class="tech-badge">Vue.js</span>
                             <span class="tech-badge">D3</span>
                         </div>
-                        <div class="flex gap-4">
-                            <a href="#" class="text-gray-400 hover:text-[#FF5722] transition"><i class="fab fa-github"></i> Code</a>
-                            <a href="#" class="text-gray-400 hover:text-[#FF5722] transition"><i class="fas fa-external-link-alt"></i> Demo</a>
+                        <div class="flex gap-5">
+                            <a href="#" class="text-gray-400 hover:text-[#c9a84c] transition text-sm flex items-center gap-2">
+                                <i class="fab fa-github"></i> Code
+                            </a>
+                            <a href="#" class="text-gray-400 hover:text-[#c9a84c] transition text-sm flex items-center gap-2">
+                                <i class="fas fa-external-link-alt"></i> Demo
+                            </a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Projet 6 -->
-                <div class="card-dark overflow-hidden">
-                    <div class="h-48 overflow-hidden">
+                <div class="card-pro overflow-hidden reveal-scale delay-6">
+                    <div class="h-56 overflow-hidden bg-gradient-to-br from-[#1a2a6c] to-[#2d4a8a]">
                         <img src="image 6.jpg" 
                              alt="Site corporate" 
-                             class="w-full h-full object-cover transition hover:scale-105 duration-500" />
+                             class="w-full h-full object-cover transition duration-700 hover:scale-110" />
                     </div>
-                    <div class="p-5">
+                    <div class="p-6">
                         <h3 class="text-xl font-bold">Site corporate</h3>
                         <p class="text-gray-400 text-sm">Vitrine + CMS</p>
-                        <div class="flex gap-2 my-3 flex-wrap">
+                        <div class="flex flex-wrap gap-2 my-4">
                             <span class="tech-badge">WordPress</span>
                             <span class="tech-badge">PHP</span>
                         </div>
-                        <div class="flex gap-4">
-                            <a href="#" class="text-gray-400 hover:text-[#FF5722] transition"><i class="fab fa-github"></i> Code</a>
-                            <a href="#" class="text-gray-400 hover:text-[#FF5722] transition"><i class="fas fa-external-link-alt"></i> Demo</a>
+                        <div class="flex gap-5">
+                            <a href="#" class="text-gray-400 hover:text-[#c9a84c] transition text-sm flex items-center gap-2">
+                                <i class="fab fa-github"></i> Code
+                            </a>
+                            <a href="#" class="text-gray-400 hover:text-[#c9a84c] transition text-sm flex items-center gap-2">
+                                <i class="fas fa-external-link-alt"></i> Demo
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -772,105 +836,141 @@
         </div>
     </section>
 
-    <!-- ========== SERVICES ========== -->
+    <!-- ============================================================ -->
+    <!-- SERVICES -->
+    <!-- ============================================================ -->
     <section id="services" class="py-28 px-6 bg-gradient-to-t from-dark to-card/80">
         <div class="container mx-auto max-w-6xl text-center">
-            <h2 class="text-4xl md:text-5xl font-display font-bold mb-4">
-                Services <span class="text-[#FF5722]">premium</span>
-            </h2>
-            <p class="text-gray-300 text-lg mb-14">Des solutions sur mesure pour votre succès digital</p>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7">
-                <div class="card-dark p-7">
-                    <i class="fas fa-code text-4xl text-[#FF5722] mb-4"></i>
+            <div class="reveal">
+                <span class="text-[#c9a84c] font-semibold tracking-widest text-sm uppercase">Services</span>
+                <h2 class="text-4xl md:text-5xl font-display font-bold mt-2">
+                    Ce que je <span class="text-[#c9a84c]">propose</span>
+                </h2>
+                <div class="section-divider"></div>
+                <p class="text-gray-300 text-lg">Des solutions premium pour votre succès</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7 mt-16">
+                <div class="card-pro p-8 text-center reveal-scale delay-1">
+                    <div class="w-16 h-16 mx-auto bg-[#c9a84c]/10 rounded-2xl flex items-center justify-center mb-4">
+                        <i class="fas fa-code text-3xl text-[#c9a84c]"></i>
+                    </div>
                     <h3 class="text-xl font-bold">Développement Full Stack</h3>
-                    <p class="text-gray-300 text-sm mt-2">Applications web complètes et performantes.</p>
+                    <p class="text-gray-400 text-sm mt-2">Applications web robustes et évolutives</p>
                 </div>
-                <div class="card-dark p-7">
-                    <i class="fas fa-paint-brush text-4xl text-[#FF5722] mb-4"></i>
+
+                <div class="card-pro p-8 text-center reveal-scale delay-2">
+                    <div class="w-16 h-16 mx-auto bg-[#c9a84c]/10 rounded-2xl flex items-center justify-center mb-4">
+                        <i class="fas fa-paint-brush text-3xl text-[#c9a84c]"></i>
+                    </div>
                     <h3 class="text-xl font-bold">UI/UX Design</h3>
-                    <p class="text-gray-300 text-sm mt-2">Interfaces intuitives et modernes.</p>
+                    <p class="text-gray-400 text-sm mt-2">Interfaces élégantes et intuitives</p>
                 </div>
-                <div class="card-dark p-7">
-                    <i class="fas fa-mobile-alt text-4xl text-[#FF5722] mb-4"></i>
-                    <h3 class="text-xl font-bold">Responsive & Mobile First</h3>
-                    <p class="text-gray-300 text-sm mt-2">Expérience parfaite sur tous les appareils.</p>
+
+                <div class="card-pro p-8 text-center reveal-scale delay-3">
+                    <div class="w-16 h-16 mx-auto bg-[#c9a84c]/10 rounded-2xl flex items-center justify-center mb-4">
+                        <i class="fas fa-mobile-alt text-3xl text-[#c9a84c]"></i>
+                    </div>
+                    <h3 class="text-xl font-bold">Responsive & Mobile</h3>
+                    <p class="text-gray-400 text-sm mt-2">Expérience parfaite sur tous les écrans</p>
                 </div>
-                <div class="card-dark p-7">
-                    <i class="fas fa-video text-4xl text-[#FF5722] mb-4"></i>
-                    <h3 class="text-xl font-bold">Montage vidéo / Motion</h3>
-                    <p class="text-gray-300 text-sm mt-2">Contenus dynamiques pour les réseaux sociaux.</p>
+
+                <div class="card-pro p-8 text-center reveal-scale delay-4">
+                    <div class="w-16 h-16 mx-auto bg-[#c9a84c]/10 rounded-2xl flex items-center justify-center mb-4">
+                        <i class="fas fa-video text-3xl text-[#c9a84c]"></i>
+                    </div>
+                    <h3 class="text-xl font-bold">Motion Design</h3>
+                    <p class="text-gray-400 text-sm mt-2">Contenus dynamiques pour les réseaux</p>
                 </div>
-                <div class="card-dark p-7">
-                    <i class="fas fa-tachometer-alt text-4xl text-[#FF5722] mb-4"></i>
+
+                <div class="card-pro p-8 text-center reveal-scale delay-5">
+                    <div class="w-16 h-16 mx-auto bg-[#c9a84c]/10 rounded-2xl flex items-center justify-center mb-4">
+                        <i class="fas fa-chart-line text-3xl text-[#c9a84c]"></i>
+                    </div>
                     <h3 class="text-xl font-bold">Optimisation SEO</h3>
-                    <p class="text-gray-300 text-sm mt-2">Meilleur référencement naturel.</p>
+                    <p class="text-gray-400 text-sm mt-2">Meilleur référencement naturel</p>
                 </div>
-                <div class="card-dark p-7">
-                    <i class="fas fa-headset text-4xl text-[#FF5722] mb-4"></i>
+
+                <div class="card-pro p-8 text-center reveal-scale delay-6">
+                    <div class="w-16 h-16 mx-auto bg-[#c9a84c]/10 rounded-2xl flex items-center justify-center mb-4">
+                        <i class="fas fa-headset text-3xl text-[#c9a84c]"></i>
+                    </div>
                     <h3 class="text-xl font-bold">Maintenance & Support</h3>
-                    <p class="text-gray-300 text-sm mt-2">Assistance continue et évolutive.</p>
+                    <p class="text-gray-400 text-sm mt-2">Accompagnement continu</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ========== CONTACT ========== -->
+    <!-- ============================================================ -->
+    <!-- CONTACT -->
+    <!-- ============================================================ -->
     <section id="contact" class="py-28 px-6">
         <div class="container mx-auto max-w-5xl">
-            <div class="text-center mb-14">
-                <h2 class="text-4xl md:text-5xl font-display font-bold">
-                    Parlons de <span class="text-[#FF5722]">votre projet</span>
+            <div class="text-center reveal">
+                <span class="text-[#c9a84c] font-semibold tracking-widest text-sm uppercase">Contact</span>
+                <h2 class="text-4xl md:text-5xl font-display font-bold mt-2">
+                    Parlons de <span class="text-[#c9a84c]">votre projet</span>
                 </h2>
-                <p class="text-gray-300 text-lg">Une question ? Un devis ? Écrivez-moi, je réponds rapidement.</p>
+                <div class="section-divider"></div>
+                <p class="text-gray-300 text-lg">Une question ? Un devis ? Écrivez-moi</p>
             </div>
-            <div class="flex flex-col md:flex-row gap-12">
-                <div class="md:w-2/5 space-y-5">
-                    <div class="glass-dark p-5 rounded-2xl">
-                        <i class="fas fa-envelope text-2xl text-[#FF5722] mb-2 block"></i>
+
+            <div class="flex flex-col md:flex-row gap-12 mt-16">
+                <div class="md:w-2/5 space-y-5 reveal-left">
+                    <div class="glass-dark p-6 rounded-2xl border border-white/5">
+                        <i class="fas fa-envelope text-2xl text-[#c9a84c] mb-3 block"></i>
                         <h3 class="font-bold">Email</h3>
-                        <p class="text-gray-300">francoisrakotomanandaz@gmail.com</p>
+                        <p class="text-gray-400 text-sm">francoisrakotomanandaz@gmail.com</p>
                     </div>
-                    <div class="glass-dark p-5 rounded-2xl">
-                        <i class="fas fa-phone-alt text-2xl text-[#FF5722] mb-2 block"></i>
+
+                    <div class="glass-dark p-6 rounded-2xl border border-white/5">
+                        <i class="fas fa-phone-alt text-2xl text-[#c9a84c] mb-3 block"></i>
                         <h3 class="font-bold">Téléphone</h3>
-                        <p class="text-gray-300">+261 34 82 535 27</p>
+                        <p class="text-gray-400 text-sm">+261 34 82 535 27</p>
                     </div>
-                    <div class="glass-dark p-5 rounded-2xl">
-                        <i class="fab fa-whatsapp text-2xl text-[#FF5722] mb-2 block"></i>
+
+                    <div class="glass-dark p-6 rounded-2xl border border-white/5">
+                        <i class="fab fa-whatsapp text-2xl text-[#c9a84c] mb-3 block"></i>
                         <h3 class="font-bold">WhatsApp</h3>
-                        <p class="text-gray-300">Disponible immédiatement</p>
+                        <p class="text-gray-400 text-sm">Disponible immédiatement</p>
                     </div>
                 </div>
-                <div class="md:w-3/5 glass-dark p-6 rounded-2xl">
+
+                <div class="md:w-3/5 glass-dark p-6 md:p-8 rounded-2xl border border-white/5 reveal-right">
                     <form id="contactForm" action="https://formspree.io/f/xbdbgzpg" method="POST" class="space-y-5" novalidate>
                         <div>
-                            <label class="block text-sm font-medium mb-1">Nom complet *</label>
+                            <label class="block text-sm font-medium mb-1 text-gray-300">Nom complet *</label>
                             <input type="text" name="name" id="contact-name"
-                                   class="w-full px-4 py-3 bg-black/40 border border-white/10 rounded-xl focus:border-[#FF5722] outline-none transition" />
-                            <div class="error-message hidden" data-field="name">
+                                   class="form-input" placeholder="Votre nom" />
+                            <div class="error-message hidden text-red-400 text-sm mt-1 flex items-center gap-2" data-field="name">
                                 <i class="fas fa-exclamation-circle"></i> Nom obligatoire
                             </div>
                         </div>
+
                         <div>
-                            <label class="block text-sm font-medium mb-1">Email *</label>
+                            <label class="block text-sm font-medium mb-1 text-gray-300">Email *</label>
                             <input type="email" name="email" id="contact-email"
-                                   class="w-full px-4 py-3 bg-black/40 border border-white/10 rounded-xl focus:border-[#FF5722] outline-none transition" />
-                            <div class="error-message hidden" data-field="email">
+                                   class="form-input" placeholder="votre@email.com" />
+                            <div class="error-message hidden text-red-400 text-sm mt-1 flex items-center gap-2" data-field="email">
                                 <i class="fas fa-exclamation-circle"></i> Email valide requis
                             </div>
                         </div>
+
                         <div>
-                            <label class="block text-sm font-medium mb-1">Message *</label>
+                            <label class="block text-sm font-medium mb-1 text-gray-300">Message *</label>
                             <textarea name="message" id="contact-message" rows="5"
-                                      class="w-full px-4 py-3 bg-black/40 border border-white/10 rounded-xl resize-none focus:border-[#FF5722] outline-none transition"></textarea>
-                            <div class="error-message hidden" data-field="message">
+                                      class="form-input resize-none" placeholder="Décrivez votre projet..."></textarea>
+                            <div class="error-message hidden text-red-400 text-sm mt-1 flex items-center gap-2" data-field="message">
                                 <i class="fas fa-exclamation-circle"></i> Veuillez écrire un message
                             </div>
                         </div>
+
                         <button type="submit" id="form-submit"
                                 class="btn-primary w-full flex items-center justify-center gap-2">
-                            Envoyer <i class="fas fa-paper-plane"></i>
+                            <i class="fas fa-paper-plane"></i> Envoyer le message
                         </button>
+
                         <div id="form-status" class="text-center text-sm font-medium"></div>
                     </form>
                 </div>
@@ -878,32 +978,42 @@
         </div>
     </section>
 
-    <!-- ========== FOOTER ========== -->
-    <footer class="border-t border-white/10 py-10 px-6 text-center">
-        <div class="container mx-auto max-w-4xl">
-            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
-                <span class="text-2xl font-display font-extrabold bg-gradient-to-r from-[#FF5722] to-[#FFB300] bg-clip-text text-transparent">
-                    MF.DEV
-                </span>
-                <div class="flex gap-4">
-                    <a href="#" class="text-gray-500 hover:text-[#FF5722] transition"><i class="fab fa-github text-lg"></i></a>
-                    <a href="#" class="text-gray-500 hover:text-[#FF5722] transition"><i class="fab fa-linkedin-in text-lg"></i></a>
-                    <a href="#" class="text-gray-500 hover:text-[#FF5722] transition"><i class="fab fa-facebook-f text-lg"></i></a>
-                    <a href="#" class="text-gray-500 hover:text-[#FF5722] transition"><i class="fab fa-twitter text-lg"></i></a>
+    <!-- ============================================================ -->
+    <!-- FOOTER -->
+    <!-- ============================================================ -->
+    <footer class="border-t border-white/5 py-12 px-6 bg-dark/50">
+        <div class="container mx-auto max-w-6xl">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <div class="flex items-center gap-3">
+                    <span class="text-2xl font-display font-extrabold tracking-tight">
+                        <span class="text-white">MF.</span><span class="text-[#c9a84c]">DEV</span>
+                    </span>
+                    <span class="text-gray-600 text-sm hidden md:block">|</span>
+                    <span class="text-gray-500 text-sm hidden md:block">Manandaza François</span>
                 </div>
+
+                <div class="flex gap-5">
+                    <a href="#" class="text-gray-500 hover:text-[#c9a84c] transition"><i class="fab fa-github text-lg"></i></a>
+                    <a href="#" class="text-gray-500 hover:text-[#c9a84c] transition"><i class="fab fa-linkedin-in text-lg"></i></a>
+                    <a href="#" class="text-gray-500 hover:text-[#c9a84c] transition"><i class="fab fa-twitter text-lg"></i></a>
+                    <a href="#" class="text-gray-500 hover:text-[#c9a84c] transition"><i class="fab fa-youtube text-lg"></i></a>
+                </div>
+
                 <p class="text-gray-500 text-sm">
-                    © 2026 — Manandaza François. Tous droits réservés.
+                    © 2026 — Tous droits réservés
                 </p>
             </div>
         </div>
     </footer>
 
-    <!-- ========== JAVASCRIPT ========== -->
+    <!-- ============================================================ -->
+    <!-- JAVASCRIPT -->
+    <!-- ============================================================ -->
     <script>
         (function() {
             'use strict';
 
-            // ----- PARTICULES ANIMÉES -----
+            // ===== PARTICULES ÉLÉGANTES =====
             const canvas = document.getElementById('particles-canvas');
             if (canvas) {
                 const ctx = canvas.getContext('2d');
@@ -925,80 +1035,60 @@
                     mouseY = e.clientY - rect.top;
                     isMouseInCanvas = true;
                 });
-                canvas.addEventListener('mouseleave', () => {
-                    isMouseInCanvas = false;
-                });
+                canvas.addEventListener('mouseleave', () => { isMouseInCanvas = false; });
 
                 class Particle {
                     constructor() {
                         this.reset();
                     }
-
                     reset() {
                         this.x = Math.random() * canvas.width;
                         this.y = Math.random() * canvas.height;
-                        this.size = Math.random() * 2 + 1;
-                        this.speedX = (Math.random() - 0.5) * 0.5;
-                        this.speedY = (Math.random() - 0.5) * 0.5;
-                        this.opacity = Math.random() * 0.5 + 0.2;
+                        this.size = Math.random() * 2 + 0.5;
+                        this.speedX = (Math.random() - 0.5) * 0.4;
+                        this.speedY = (Math.random() - 0.5) * 0.4;
+                        this.opacity = Math.random() * 0.4 + 0.1;
                     }
-
                     update() {
                         this.x += this.speedX;
                         this.y += this.speedY;
-
                         if (isMouseInCanvas) {
                             const dx = mouseX - this.x;
                             const dy = mouseY - this.y;
-                            const distance = Math.sqrt(dx * dx + dy * dy);
-                            if (distance < 150) {
-                                const force = (150 - distance) / 150 * 0.02;
+                            const dist = Math.sqrt(dx * dx + dy * dy);
+                            if (dist < 150) {
+                                const force = (150 - dist) / 150 * 0.015;
                                 this.x += dx * force;
                                 this.y += dy * force;
                             }
                         }
-
-                        if (this.x < 0 || this.x > canvas.width) {
-                            this.speedX *= -1;
-                            this.x = Math.max(0, Math.min(canvas.width, this.x));
-                        }
-                        if (this.y < 0 || this.y > canvas.height) {
-                            this.speedY *= -1;
-                            this.y = Math.max(0, Math.min(canvas.height, this.y));
-                        }
+                        if (this.x < 0 || this.x > canvas.width) { this.speedX *= -1;
+                            this.x = Math.max(0, Math.min(canvas.width, this.x)); }
+                        if (this.y < 0 || this.y > canvas.height) { this.speedY *= -1;
+                            this.y = Math.max(0, Math.min(canvas.height, this.y)); }
                     }
-
                     draw() {
                         ctx.beginPath();
                         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                        ctx.fillStyle = `rgba(255, 87, 34, ${this.opacity})`;
+                        ctx.fillStyle = `rgba(201, 168, 76, ${this.opacity})`;
                         ctx.fill();
-                        if (this.size > 1.5) {
-                            ctx.shadowColor = 'rgba(255, 87, 34, 0.3)';
-                            ctx.shadowBlur = 10;
-                            ctx.fill();
-                            ctx.shadowBlur = 0;
-                        }
                     }
                 }
 
-                const particleCount = Math.min(80, Math.floor((canvas.width * canvas.height) / 15000));
-                for (let i = 0; i < particleCount; i++) {
-                    particles.push(new Particle());
-                }
+                const count = Math.min(60, Math.floor((canvas.width * canvas.height) / 20000));
+                for (let i = 0; i < count; i++) particles.push(new Particle());
 
                 function drawLines() {
                     for (let i = 0; i < particles.length; i++) {
                         for (let j = i + 1; j < particles.length; j++) {
                             const dx = particles[i].x - particles[j].x;
                             const dy = particles[i].y - particles[j].y;
-                            const distance = Math.sqrt(dx * dx + dy * dy);
-                            if (distance < 120) {
+                            const dist = Math.sqrt(dx * dx + dy * dy);
+                            if (dist < 100) {
                                 ctx.beginPath();
                                 ctx.moveTo(particles[i].x, particles[i].y);
                                 ctx.lineTo(particles[j].x, particles[j].y);
-                                const opacity = 0.15 * (1 - distance / 120);
-                                ctx.strokeStyle = `rgba(255, 87, 34, ${opacity})`;
+                                ctx.strokeStyle = `rgba(201, 168, 76, ${0.08 * (1 - dist / 100)})`;
                                 ctx.lineWidth = 0.5;
                                 ctx.stroke();
                             }
@@ -1006,27 +1096,30 @@
                     }
                 }
 
-                function animateParticles() {
+                function animate() {
                     ctx.clearRect(0, 0, canvas.width, canvas.height);
-                    particles.forEach(p => {
-                        p.update();
-                        p.draw();
-                    });
+                    particles.forEach(p => { p.update();
+                        p.draw(); });
                     drawLines();
-                    requestAnimationFrame(animateParticles);
+                    requestAnimationFrame(animate);
                 }
-
-                animateParticles();
+                animate();
             }
 
-            // ----- SMOOTH SCROLL -----
+            // ===== MOBILE MENU =====
+            const menuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (menuBtn) {
+                menuBtn.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
+            }
+
+            // ===== SMOOTH SCROLL & FERMETURE MENU =====
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function(e) {
                     e.preventDefault();
                     const target = document.querySelector(this.getAttribute('href'));
                     if (target) {
                         target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                        const mobileMenu = document.getElementById('mobile-menu');
                         if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
                             mobileMenu.classList.add('hidden');
                         }
@@ -1034,18 +1127,19 @@
                 });
             });
 
-            // ----- MOBILE MENU -----
-            const menuBtn = document.getElementById('mobile-menu-btn');
-            const mobileMenu = document.getElementById('mobile-menu');
-            if (menuBtn) {
-                menuBtn.addEventListener('click', () => {
-                    mobileMenu.classList.toggle('hidden');
-                });
-            }
+            // ===== NAVBAR =====
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 30) {
+                    navbar.classList.add('bg-dark/95', 'backdrop-blur-xl');
+                } else {
+                    navbar.classList.remove('bg-dark/95', 'backdrop-blur-xl');
+                }
+            });
 
-            // ----- SKILL BARS ANIMATION -----
-            const skillSection = document.getElementById('skills');
+            // ===== SKILL BARS =====
             let animated = false;
+            const skillSection = document.getElementById('skills');
 
             function animateSkills() {
                 if (animated) return;
@@ -1054,30 +1148,31 @@
                     document.querySelectorAll('[data-skill]').forEach(card => {
                         const percent = card.getAttribute('data-skill');
                         const fill = card.querySelector('.skill-fill');
-                        if (fill) {
-                            fill.style.width = percent + '%';
-                        }
+                        if (fill) fill.style.width = percent + '%';
                     });
                     animated = true;
                     window.removeEventListener('scroll', animateSkills);
                 }
             }
             window.addEventListener('scroll', animateSkills);
-            setTimeout(animateSkills, 300);
+            setTimeout(animateSkills, 400);
 
-            // ----- NAVBAR -----
-            const navbar = document.getElementById('navbar');
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 30) {
-                    navbar.classList.add('bg-dark/95', 'backdrop-blur-xl');
-                    navbar.classList.remove('bg-dark/90');
-                } else {
-                    navbar.classList.remove('bg-dark/95', 'backdrop-blur-xl');
-                    navbar.classList.add('bg-dark/90');
-                }
-            });
+            // ===== REVEAL ANIMATIONS AU SCROLL =====
+            const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
 
-            // ----- FORMULAIRE -----
+            function checkReveal() {
+                revealElements.forEach(el => {
+                    const rect = el.getBoundingClientRect();
+                    if (rect.top < window.innerHeight - 80) {
+                        el.classList.add('active');
+                    }
+                });
+            }
+
+            window.addEventListener('scroll', checkReveal);
+            checkReveal();
+
+            // ===== FORMULAIRE =====
             const form = document.getElementById('contactForm');
             const nameInp = document.getElementById('contact-name');
             const emailInp = document.getElementById('contact-email');
@@ -1087,60 +1182,44 @@
 
             function clearErrors() {
                 document.querySelectorAll('.error-message').forEach(el => el.classList.add('hidden'));
-                [nameInp, emailInp, msgInp].forEach(inp => {
-                    inp.classList.remove('input-error', 'input-success');
-                });
+                [nameInp, emailInp, msgInp].forEach(inp => inp.classList.remove('input-error', 'input-success'));
             }
 
             function showError(fieldId) {
                 const errorDiv = document.querySelector(`.error-message[data-field="${fieldId}"]`);
                 const input = document.getElementById(`contact-${fieldId}`);
                 if (errorDiv) errorDiv.classList.remove('hidden');
-                if (input) {
-                    input.classList.remove('input-success');
-                    input.classList.add('input-error');
-                }
+                if (input) { input.classList.remove('input-success');
+                    input.classList.add('input-error'); }
             }
 
             function showSuccess(fieldId) {
                 const input = document.getElementById(`contact-${fieldId}`);
-                if (input) {
-                    input.classList.remove('input-error');
-                    input.classList.add('input-success');
-                }
+                if (input) { input.classList.remove('input-error');
+                    input.classList.add('input-success'); }
             }
 
             function validateField(fieldId) {
                 const input = document.getElementById(`contact-${fieldId}`);
                 const val = input ? input.value.trim() : '';
                 const errorDiv = document.querySelector(`.error-message[data-field="${fieldId}"]`);
-
                 if (errorDiv) errorDiv.classList.add('hidden');
                 if (input) input.classList.remove('input-error', 'input-success');
 
                 let isValid = false;
+                if (fieldId === 'name') isValid = val.length > 0;
+                else if (fieldId === 'email') isValid = /^[^\s@]+@([^\s@.,]+\.)+[^\s@.,]{2,}$/.test(val);
+                else if (fieldId === 'message') isValid = val.length > 0;
 
-                if (fieldId === 'name') {
-                    isValid = val.length > 0;
-                } else if (fieldId === 'email') {
-                    isValid = /^[^\s@]+@([^\s@.,]+\.)+[^\s@.,]{2,}$/.test(val);
-                } else if (fieldId === 'message') {
-                    isValid = val.length > 0;
-                }
-
-                if (!isValid && val.length > 0) {
-                    showError(fieldId);
-                } else if (isValid) {
-                    showSuccess(fieldId);
-                }
+                if (!isValid && val.length > 0) showError(fieldId);
+                else if (isValid) showSuccess(fieldId);
                 return isValid;
             }
 
-            nameInp.addEventListener('blur', () => validateField('name'));
-            emailInp.addEventListener('blur', () => validateField('email'));
-            msgInp.addEventListener('blur', () => validateField('message'));
-
             [nameInp, emailInp, msgInp].forEach(inp => {
+                inp.addEventListener('blur', function() {
+                    validateField(this.id.replace('contact-', ''));
+                });
                 inp.addEventListener('input', function() {
                     const fieldId = this.id.replace('contact-', '');
                     const errorDiv = document.querySelector(`.error-message[data-field="${fieldId}"]`);
@@ -1151,15 +1230,11 @@
 
             function validateAll() {
                 clearErrors();
-                const isNameValid = validateField('name');
-                const isEmailValid = validateField('email');
-                const isMsgValid = validateField('message');
-                return isNameValid && isEmailValid && isMsgValid;
+                return validateField('name') && validateField('email') && validateField('message');
             }
 
             form.addEventListener('submit', async (e) => {
                 e.preventDefault();
-
                 if (!validateAll()) {
                     statusDiv.innerHTML =
                         '<span class="text-red-400"><i class="fas fa-exclamation-triangle"></i> Veuillez corriger les champs</span>';
@@ -1170,16 +1245,13 @@
                 submitBtn.disabled = true;
                 submitBtn.innerHTML = '<span>Envoi...</span> <i class="fas fa-spinner fa-spin"></i>';
 
-                const formData = new FormData(form);
-
                 try {
                     const res = await fetch(form.action, {
                         method: 'POST',
-                        body: formData,
+                        body: new FormData(form),
                         headers: { 'Accept': 'application/json' }
                     });
                     const data = await res.json();
-
                     if (res.ok && data.ok) {
                         statusDiv.innerHTML =
                             '<span class="text-green-400"><i class="fas fa-check-circle"></i> Message envoyé avec succès !</span>';
@@ -1195,7 +1267,7 @@
                         '<span class="text-red-400"><i class="fas fa-wifi"></i> Problème réseau, réessayez</span>';
                 } finally {
                     submitBtn.disabled = false;
-                    submitBtn.innerHTML = '<span>Envoyer</span> <i class="fas fa-paper-plane"></i>';
+                    submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Envoyer le message';
                     setTimeout(() => statusDiv.innerHTML = '', 5000);
                 }
             });
